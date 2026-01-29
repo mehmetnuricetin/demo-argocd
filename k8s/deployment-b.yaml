@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nuri-nginx-demo-b
+  labels:
+    app: nuri-nginx-demo-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nuri-nginx-demo-b
+  template:
+    metadata:
+      labels:
+        app: nuri-nginx-demo-b
+    spec:
+      containers:
+        - name: nginx
+          image: quay.io/kurs/demoserver-b:latest
+          ports:
+          - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
