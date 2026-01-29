@@ -19,6 +19,22 @@ spec:
           image: quay.io/kurs/demoserver-b:latest                                                 
           ports:                                                            
           - containerPort: 5000                                              
+          volumeMounts:
+            - name: html-volume
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 3
           resources:                                                        
             requests:                                                       
               memory: "64Mi"                                                
@@ -26,3 +42,7 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "200m"
+      volumes:
+        - name: html-volume
+          configMap:
+            name: nuri-html-config
