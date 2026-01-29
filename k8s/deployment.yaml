@@ -1,11 +1,11 @@
 apiVersion: apps/v1                                                       
 kind: Deployment                                                          
 metadata:                                                                 
-  name: jonas-nginx-demo                                                        
+  name: nuri-nginx-demo                                                        
   labels:                                                                 
-    app: jonas-nginx-demo                                                       
+    app: nuri-nginx-demo                                                       
 spec:                                                                     
-  replicas: 4                                                             
+  replicas: 3                                                             
   selector:                                                               
     matchLabels:                                                          
       app: nuri-nginx-demo                                                     
