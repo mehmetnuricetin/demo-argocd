@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1                                         
+kind: Route                                                               
+metadata:                                                                 
+  name: nuri-nginx-demo                                                        
+  labels:                                                                 
+    app: nuri-nginx-demo                                                       
+spec:                                                                     
+  to:                                                                     
+    kind: Service                                                         
+    name: nuri-nginx-demo                                                      
+    weight: 100
